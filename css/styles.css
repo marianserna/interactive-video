@@ -1,0 +1,12 @@
+/*font-family: 'Nunito', sans-serif;
+font-family: 'Anton', sans-serif;*/
+
+.page {
+  display: none;
+}
+
+.photo {
+  border: 1px solid red;
+  width: 100px;
+  height: 100px;
+}

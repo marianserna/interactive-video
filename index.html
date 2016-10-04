@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="css/styles.css" />
+    <link href="https://fonts.googleapis.com/css?family=Anton|Nunito:300" rel="stylesheet">
+    <title>JUNGLE | Down the roads less travelled</title>
+  </head>
+
+  <body>
+
+    <nav id="hamburger-nav">
+      <ul>
+        <li onclick="landingLinkClick();">Home</li>
+        <li onclick="videoLinkClick();">Video</li>
+        <li onclick="picsLinkClick();">Pictures</li>
+        <li onclick="mapLinkClick();">Map</li>
+      </ul>
+    </nav>
+
+    <div id="landing" class="page">
+      <div id="landing_part1">
+        <h1>JUN</h1>
+      </div>
+
+      <div id="landing_part2">
+        <h1>GLE</h1>
+      </div>
+
+      <h3>Down the roads less traveled.</h3>
+
+      <nav>
+        <ul id="bottom-nav">
+          <li onclick="videoLinkClick();">Video</li>
+          <li onclick="picsLinkClick();">Pictures</li>
+          <li onclick="mapLinkClick();">Map</li>
+        </ul>
+      </nav>
+    </div>
+
+    <div id="video" class="page">
+
+      <h2>Yada</h2>
+    </div>
+
+    <div id="pics" class="page">
+
+      <h2>Pics</h2>
+
+      <div class="photo">
+
+      </div>
+      <div class="photo">
+
+      </div>
+      <div class="photo">
+
+      </div>
+      <div class="photo">
+
+      </div>
+    </div>
+
+    <div id="map" class="page">
+
+      <h2>Hello World!</h2>
+    </div>
+
+    <script>
+      function hideAllPages() {
+        var pages = document.getElementsByClassName('page');
+        for(var i = 0; i < pages.length; i++) {
+          pages[i].style.display = 'none';
+        }
+      }
+
+      function showHamburger() {
+        var hamburger = document.getElementById('hamburger-nav');
+        hamburger.style.display = 'block';
+      }
+
+      function hideHamburger() {
+        var hamburger = document.getElementById('hamburger-nav');
+        hamburger.style.display = 'none';
+      }
+
+      // When clicking on home link
+      function landingLinkClick() {
+        hideAllPages();
+        showLandingPage();
+        playSong('assets/Long_Note_Three.mp3');
+        playClick();
+        hideHamburger();
+      }
+
+      // When clicking on video link
+      function videoLinkClick() {
+        hideAllPages();
+        showVideoPage();
+        playSong('assets/I_Am_a_Man_Who_Will_Fight_for_Your_Honor.mp3');
+        playClick();
+        showHamburger();
+      }
+
+      // When clicking on pics link
+      function picsLinkClick() {
+        hideAllPages();
+        showPicsPage();
+        pauseSong();
+        playClick();
+        showHamburger();
+      }
+
+      // When clicking on maps link
+      function mapLinkClick() {
+        hideAllPages();
+        showMapPage();
+        pauseSong();
+        playClick();
+        showHamburger();
+      }
+
+      // Create audio tag for background music
+      function createMusic() {
+        music = document.createElement('audio');
+        document.body.appendChild(music);
+      }
+
+      // Change song and play it
+      function playSong(song) {
+        music.setAttribute("src", song);
+        music.play();
+      }
+
+      function pauseSong() {
+        music.pause();
+      }
+
+      // Create audio tag for click sound
+      function createClick() {
+        click = document.createElement('audio');
+        click.setAttribute("src", "assets/click.mp3");
+        document.body.appendChild(click);
+      }
+
+      function playClick() {
+        // When clicking to fast, audio doesn't play the 2nd time (cuz it's still running). This function pauses the click, takes the track to the beginning, then plays it back.
+        click.pause();
+        click.currentTime = 0;
+        click.play();
+      }
+
+      function showLandingPage() {
+        var landingPage = document.getElementById('landing');
+        landingPage.style.display = 'flex';
+      }
+
+      function showVideoPage() {
+        var videoPage = document.getElementById('video');
+        videoPage.style.display = 'flex';
+      }
+
+      function showPicsPage() {
+        var picsPage = document.getElementById('pics');
+        picsPage.style.display = 'flex';
+      }
+
+      function showMapPage() {
+        var mapPage = document.getElementById('map');
+        mapPage.style.display = 'block';
+      }
+    </script>
+
+
+    <script type="text/javascript">
+      var music,
+        click;
+
+      window.onload = function() {
+        // Setup initial landing page
+        createMusic();
+        createClick();
+        hideAllPages();
+        playSong('assets/Long_Note_Three.mp3');
+        showLandingPage();
+        hideHamburger();
+      };
+    </script>
+
+  </body>
+</html>
