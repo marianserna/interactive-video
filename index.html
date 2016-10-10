@@ -2,32 +2,62 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/styles.css" />
-    <link href="https://fonts.googleapis.com/css?family=Anton|Nunito:300" rel="stylesheet">
-    <title>JUNGLE | Down the roads less travelled</title>
+    <link href="https://fonts.googleapis.com/css?family=Oswald|Oxygen" rel="stylesheet">
+
+    <script src="scripts/title.js"></script>
+    <script src="scripts/menu.js"></script>
+    <script src="scripts/shared.js"></script>
+    <script src="scripts/landing.js"></script>
+    <script src="scripts/video.js"></script>
+    <script src="scripts/pics.js"></script>
+    <script src="scripts/map.js"></script>
+    <script src="scripts/map_style.js"></script>
+    <title>JUNGLE</title>
   </head>
 
   <body>
 
     <nav id="hamburger-nav">
-      <ul>
-        <li onclick="landingLinkClick();">Home</li>
-        <li onclick="videoLinkClick();">Video</li>
-        <li onclick="picsLinkClick();">Pictures</li>
-        <li onclick="mapLinkClick();">Map</li>
-      </ul>
+      <div class="menu-trigger" onclick="showNav();">
+        <div class="menu-text">
+          ME
+          <br>
+          <hr>
+          NU
+        </div>
+      </div>
+      <div id="hamburger_items">
+        <div class="close" onclick="closeNav();">X</div>
+        <ul>
+          <hr class="hamburger-line">
+          <li onclick="landingLinkClick();">Home</li>
+          <hr class="hamburger-line">
+          <li onclick="videoLinkClick();">Video</li>
+          <hr class="hamburger-line">
+          <li onclick="picsLinkClick();">Pictures</li>
+          <hr class="hamburger-line">
+          <li onclick="mapLinkClick();">Map</li>
+          <hr class="hamburger-line">
+        </ul>
+      </div>
     </nav>
 
     <div id="landing" class="page">
       <div id="landing_part1">
-        <h1>JUN</h1>
+        <canvas id="canvas"></canvas>
       </div>
 
       <div id="landing_part2">
-        <h1>GLE</h1>
-      </div>
+        <h3>"Imagine a man without lungs.
+          <br>
+          <p>Imagine Earth without the Amazon."</p>
+          <p>Vinita Kinra</p>
+        </h3>
 
-      <h3>Down the roads less traveled.</h3>
+      </div>
 
       <nav>
         <ul id="bottom-nav">
@@ -39,153 +69,67 @@
     </div>
 
     <div id="video" class="page">
-
-      <h2>Yada</h2>
+      <video id="aboriginal_video" controls>
+        <source src="assets/video_amazon.mp4" type="video/mp4">
+        <source src="assets/video_amazon.webm" type="video/webm">
+        <!-- <source src="movie.ogg" type="video/ogg"> -->
+        Your browser does not support the video tag.
+      </video>
+      <span id="subtitles">Yada</span>
     </div>
 
     <div id="pics" class="page">
-
-      <h2>Pics</h2>
-
-      <div class="photo">
-
+      <div id="overlay">
+        <div class="close" onclick="closeInfo()">X</div>
+        <div id="image_details"></div>
       </div>
-      <div class="photo">
 
-      </div>
-      <div class="photo">
-
-      </div>
-      <div class="photo">
-
+      <div class="images">
+        <!-- Using inline style to avoid flexbox issue with image dimensions. -->
+        <!-- data description is a data attribute that allows me to attach additional info to an HTML element. Used JS to access the data attributes in these divs -->
+        <div class="image-wrapper" data-description="The Amazon Rainforest covers 40% of South America and the Amazon River is the largest river in the world by volume." onclick="showInfo(this);">
+          <div class="text">Click</div>
+          <div class="image" style="background-image:url('assets/monkeys.JPG')"></div>
+        </div>
+        <div class="image-wrapper" data-description="There is only 69% of the Amazon Rainforest left. 20% of the planet's oxygen is produced by the Amazon Rainforest." onclick="showInfo(this);">
+          <div class="text">Click</div>
+          <div class="image" style="background-image:url('assets/canoes.JPG')"></div>
+        </div>
+        <div class="image-wrapper" data-description="There are over 200 indigenous tribes in the Amazon, they speak 180 different languages. At least 50 groups don't know the outside world." onclick="showInfo(this);">
+          <div class="text">Click</div>
+          <div class="image" style="background-image:url('assets/puerto_narino.JPG')"></div>
+        </div>
+        <div class="image-wrapper" data-description="When indigenous shamans, natural medicine experts, die, a vast body of ancient knowledge is lost forever. Currently most shamans are over 70 years and they have no apprentices." onclick="showInfo(this);">
+          <div class="text">Click</div>
+          <div class="image" style="background-image:url('assets/flower.JPG')"></div>
+        </div>
       </div>
     </div>
 
     <div id="map" class="page">
-
-      <h2>Hello World!</h2>
+      <div id="map-google"></div>
     </div>
 
-    <script>
-      function hideAllPages() {
-        var pages = document.getElementsByClassName('page');
-        for(var i = 0; i < pages.length; i++) {
-          pages[i].style.display = 'none';
-        }
-      }
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBk9h-WFvosW1LZBe8_chLa2J39AE2-D5Q&callback=initMap"
+    async defer></script>
 
-      function showHamburger() {
-        var hamburger = document.getElementById('hamburger-nav');
-        hamburger.style.display = 'block';
-      }
+    <!-- Credits:
 
-      function hideHamburger() {
-        var hamburger = document.getElementById('hamburger-nav');
-        hamburger.style.display = 'none';
-      }
+    **Music:
 
-      // When clicking on home link
-      function landingLinkClick() {
-        hideAllPages();
-        showLandingPage();
-        playSong('assets/Long_Note_Three.mp3');
-        playClick();
-        hideHamburger();
-      }
+    I Am a Man Who Will Fight for Your Honor de Chris Zabriskie está sujeta a una licencia de Creative Commons Attribution (https://creativecommons.org/licenses/by/4.0/)
+    Fuente: http://chriszabriskie.com/honor/
+    Artista: http://chriszabriskie.com/
 
-      // When clicking on video link
-      function videoLinkClick() {
-        hideAllPages();
-        showVideoPage();
-        playSong('assets/I_Am_a_Man_Who_Will_Fight_for_Your_Honor.mp3');
-        playClick();
-        showHamburger();
-      }
+    Feral Chase de Kevin MacLeod está sujeta a una licencia de Creative Commons Attribution (https://creativecommons.org/licenses/by/4.0/)
+    Fuente: http://incompetech.com/music/royalty-free/index.html?isrc=USUAN1100229
+    Artista: http://incompetech.com/
 
-      // When clicking on pics link
-      function picsLinkClick() {
-        hideAllPages();
-        showPicsPage();
-        pauseSong();
-        playClick();
-        showHamburger();
-      }
+    Dark Fog de Kevin MacLeod está sujeta a una licencia de Creative Commons Attribution (https://creativecommons.org/licenses/by/4.0/)
+    Fuente: http://incompetech.com/music/royalty-free/index.html?isrc=USUAN1300031
+    Artista: http://incompetech.com/
 
-      // When clicking on maps link
-      function mapLinkClick() {
-        hideAllPages();
-        showMapPage();
-        pauseSong();
-        playClick();
-        showHamburger();
-      }
-
-      // Create audio tag for background music
-      function createMusic() {
-        music = document.createElement('audio');
-        document.body.appendChild(music);
-      }
-
-      // Change song and play it
-      function playSong(song) {
-        music.setAttribute("src", song);
-        music.play();
-      }
-
-      function pauseSong() {
-        music.pause();
-      }
-
-      // Create audio tag for click sound
-      function createClick() {
-        click = document.createElement('audio');
-        click.setAttribute("src", "assets/click.mp3");
-        document.body.appendChild(click);
-      }
-
-      function playClick() {
-        // When clicking to fast, audio doesn't play the 2nd time (cuz it's still running). This function pauses the click, takes the track to the beginning, then plays it back.
-        click.pause();
-        click.currentTime = 0;
-        click.play();
-      }
-
-      function showLandingPage() {
-        var landingPage = document.getElementById('landing');
-        landingPage.style.display = 'flex';
-      }
-
-      function showVideoPage() {
-        var videoPage = document.getElementById('video');
-        videoPage.style.display = 'flex';
-      }
-
-      function showPicsPage() {
-        var picsPage = document.getElementById('pics');
-        picsPage.style.display = 'flex';
-      }
-
-      function showMapPage() {
-        var mapPage = document.getElementById('map');
-        mapPage.style.display = 'block';
-      }
-    </script>
-
-
-    <script type="text/javascript">
-      var music,
-        click;
-
-      window.onload = function() {
-        // Setup initial landing page
-        createMusic();
-        createClick();
-        hideAllPages();
-        playSong('assets/Long_Note_Three.mp3');
-        showLandingPage();
-        hideHamburger();
-      };
-    </script>
+    **Pictures & Video are my own. -->
 
   </body>
 </html>

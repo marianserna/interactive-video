@@ -1,12 +1,277 @@
-/*font-family: 'Nunito', sans-serif;
-font-family: 'Anton', sans-serif;*/
+body {
+  background-color: #212121;
+}
+
+.page, #hamburger-nav, #overlay {
+  display: none;
+}
+
+.menu-trigger, .close {
+  position: absolute;
+  top: 50px;
+  right: 50px;
+  display: flex;
+  width: 50px;
+  z-index: 50;
+  line-height: 0.5em;
+  cursor: pointer;
+}
+
+.menu-text, .close {
+  font-family: 'Oxygen', sans-serif;
+  font-size: 2em;
+  color: #fff;
+  text-align: center;
+}
+
+.menu-text:hover {
+  color: #69F0AE;
+}
+
+.close {
+  z-index: 100;
+  color: #69F0AE;
+  cursor: pointer;
+}
+
+#hamburger_items {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 100;
+  width: 100vw;
+  height: 100vh;
+  display: none;
+  background-color: #212121;
+}
+
+#hamburger_items ul {
+  width: 30%;
+  margin: 70px auto;
+}
+
+#hamburger_items ul li {
+  text-align: center;
+  height: 10vh;
+  color: #fff;
+  font-family: 'Oxygen', sans-serif;
+  font-size: 2em;
+  padding-top: 30px;;
+}
+
+#hamburger_items ul li:hover {
+  background-color: #FF8A65;
+  cursor: pointer;
+}
+
+hr {
+  border: solid 0.5px #263238;
+}
+
+.hamburger-line {
+  border: solid 0.5px #BDBDBD;
+}
+
+#video {
+  width: 100%;
+  height: 100vh;
+  background-image: url("../assets/coca_leaves.JPG");
+  background-size: cover;
+}
+
+#aboriginal_video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0 auto;
+  width: 60vw;
+  height: auto;
+}
+
+/*Removed full screen option from video because subtitles wouldn't work on that mode.*/
+#aboriginal_video::-webkit-media-controls-fullscreen-button {
+  display: none !important;
+}
+
+#subtitles {
+  position: absolute;
+  display: none;
+  width: 50vw;
+  left: 25vw;
+  text-align: center;
+  z-index: 40;
+  font-family: 'Oxygen', sans-serif;
+  font-size: 1em;
+  color: #fff;
+  text-align: center;
+}
 
 .page {
   display: none;
 }
 
-.photo {
-  border: 1px solid red;
-  width: 100px;
-  height: 100px;
+#pics {
+  width: 100vw;
+  height: 100vh;
+  background-color: #212121;
+}
+
+.images {
+  width: 100vw;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.images .image-wrapper {
+  display: block;
+  position: relative;
+  width: 50%;
+  flex-grow: 0;
+  cursor: pointer;
+}
+
+.image-wrapper .image {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.image-wrapper .image:hover {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+
+.image-wrapper .text, .image-wrapper .image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.image-wrapper .text {
+  font-family: 'Oxygen', sans-serif;
+  text-decoration: underline;
+  font-size: 3.5em;
+  color: #fff;
+  text-align: center;
+  opacity: 0;
+  z-index: 5;
+  background-color: rgba(66, 66, 66, 0.4);
+  line-height: 50vh;
+}
+
+.image-wrapper .text:hover {
+  opacity: 1;
+}
+
+#overlay {
+  position: absolute;
+  z-index: 200;
+  background-color: #212121;
+  width: 100vw;
+  height: 100vh;
+}
+
+#image_details {
+  width: 40vw;
+  font-family: 'Oxygen', sans-serif;
+  font-size: 1.5em;
+  line-height: 2em;
+  color: #fff;
+  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#map-google {
+  height: 100vh;
+  width: 100vw;
+}
+
+#canvas {
+  width: 100vw;
+  height: 50vh;
+}
+
+#landing_part2 h3 {
+  padding-top: 1.5em;
+  padding-bottom: 1.5em;
+  padding-right: 8em;
+  text-align: right;
+  font-family: 'Oxygen', sans-serif;
+  font-size: 1em;
+  font-style: italic;
+  line-height: 1.2em;
+  color: #fff;
+  overflow: hidden;
+}
+
+#landing_part2 h3 {
+  animation: slidein 2s;
+}
+
+@keyframes slidein {
+  0% {
+    transform: translateX(1000px);
+  }
+  100% {
+    transform: translateX(0px);
+  }
+}
+
+#bottom-nav {
+  background-color: #212121;
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  width: 100%;
+  font-family: 'Oxygen', sans-serif;
+  font-size: 2em;
+  color: #fff;
+}
+
+#bottom-nav li {
+  width: 33%;
+  text-align: center;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  cursor: pointer;
+}
+
+#bottom-nav li:hover {
+  color: #CDDC39;
+}
+
+@media (max-width: 600px) {
+  #landing_part2 h3 {
+    padding-right: 4em;
+    font-size: 0.8em;
+  }
+
+  .images .image-wrapper {
+    width: 100%;
+  }
+
+  .image-wrapper .text {
+    line-height: 25vh;
+    width: 25vw;
+  }
+
+  #bottom-nav {
+    font-size: 1.2em;
+  }
+}
+
+@media (max-width: 800px) {
+  #aboriginal_video {
+    width: 95vw;
+  }
+
+  #image_details {
+    font-size: 1em;
+    width: 60vw;
+    line-height: 1.5em;
+  }
 }
