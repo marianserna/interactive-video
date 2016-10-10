@@ -150,8 +150,7 @@ hr {
 
 .image-wrapper .text {
   font-family: 'Oxygen', sans-serif;
-  text-decoration: underline;
-  font-size: 3.5em;
+  font-size: 1.5em;
   color: #fff;
   text-align: center;
   opacity: 0;
@@ -257,6 +256,11 @@ hr {
   .image-wrapper .text {
     line-height: 25vh;
     width: 25vw;
+  }
+
+  .close {
+    position: absolute;
+    right: 10px;
   }
 
   #bottom-nav {
